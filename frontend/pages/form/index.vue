@@ -26,7 +26,7 @@
           <input type="file" @change="setImage">
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_status" label="Status" :checked="status" type="checkbox" @updateValue="status=$event" />
+          <InputField id="id_status" label="Status" :checked="status" type="checkbox" @updateValue="status=$event.checked" />
         </div>
       </div>
 
