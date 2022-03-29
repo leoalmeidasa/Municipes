@@ -1,7 +1,14 @@
 <template>
   <div class="mb-2">
     <label :for="id" class="form-label">{{ label }}</label>
-    <input :id="id" :type="type" :value="value" class="form-control" v-on="listeners">
+    <input
+      :id="id"
+      :type="type"
+      :value="value"
+      :checked="checked"
+      class="form-control"
+      v-on="listeners"
+    >
   </div>
 </template>
 
@@ -24,6 +31,10 @@ export default {
     // eslint-disable-next-line vue/require-default-prop
     value: {
       type: String
+    },
+    checked: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
