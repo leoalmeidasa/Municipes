@@ -44,7 +44,7 @@ export default {
     },
     editMunicipes (id) {
       this.$store.commit('loadMunicipeEdit', this.municipes[id])
-      console.log(this.$store.state.municipeEdit)
+      this.$router.push({ name: 'edit' })
     }
   }
 }
