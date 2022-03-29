@@ -1,6 +1,9 @@
 <template>
   <div>
     <form>
+      <div id="preview" class="container-preview">
+        <img v-if="photo" :src="photo.url">
+      </div>
       <h4>Dados Pessoais</h4><hr>
       <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
@@ -26,7 +29,7 @@
           <input type="file" @change="setImage">
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_status" label="Status" type="checkbox" :checked="status" @updateValue="status=$event" />
+          <InputField id="id_status" label="Status" type="checkbox" :checked="status" @updateValue="status=$event.checked" />
         </div>
       </div>
 
@@ -100,6 +103,8 @@ export default {
   methods: {
     setImage (e) {
       this.photo = e.target.files[0]
+      if (!this.photo.length) { return }
+      this.createImage(this.photo[0])
     },
     // Collecting everything inside our FormData object
     loadData () {
@@ -157,9 +162,20 @@ export default {
 </script>
 
 <style scoped>
-form {
+  form {
     margin-left: 20%;
     background: #B2EBF2;
     padding: 10px;
   }
+  #preview {
+    display: flex;
+    justify-content: center;
+  }
+  #preview img {
+    max-width: 100%;
+    max-height: 150px;
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+
 </style>
