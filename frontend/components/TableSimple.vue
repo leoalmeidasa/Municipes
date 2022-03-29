@@ -28,7 +28,7 @@
             <td>{{ municipe.email }}</td>
             <td>{{ municipe.birth_date }}</td>
             <td>{{ municipe.telephone }}</td>
-            <td>{{ municipe.status }}</td>
+            <td>{{ municipe.status ? 'Ativo' : 'Inativo' }}</td>
             <td>
               <button type="button" class="btn btn-primary btn-sm" @click="funcEdition(index)">
                 Editar
