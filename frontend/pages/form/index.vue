@@ -26,7 +26,7 @@
           <input type="file" @change="setImage">
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_status" label="Status" type="checkbox" @updateValue="status=$event" />
+          <InputField id="id_status" label="Status" :checked="status" type="checkbox" @updateValue="status=$event" />
         </div>
       </div>
 
@@ -84,7 +84,6 @@ export default {
       city: '',
       cep: '',
       uf: ''
-
     }
   },
   methods: {
@@ -111,7 +110,13 @@ export default {
       formData.append('endereco_attributes[UF]', this.uf)
 
       // Finally, sending the POST request with our beloved Axios
-      this.$axios.$post('/municipes', formData)
+      this.$axios.$post('/municipes', formData).then((resp) => {
+        if (resp.status === 'SUCCESS') {
+          this.$router.push({
+            path: '/'
+          })
+        }
+      })
     }
   }
 }
