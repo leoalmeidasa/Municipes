@@ -10,10 +10,24 @@
           <InputField id="id_nome" label="Nome" type="text" :value="description" @updateValue="description = $event" />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cpf" label="Cpf" type="text" :value="cpf" @updateValue="cpf=$event" />
+          <InputField
+            id="id_cpf"
+            v-mask="'###.###.###-##'"
+            label="Cpf"
+            type="text"
+            :value="cpf"
+            @updateValue="cpf=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cns" label="Cns" type="text" :value="cns" @updateValue="cns=$event" />
+          <InputField
+            id="id_cns"
+            v-mask="'### #### #### ####'"
+            label="Cns"
+            type="text"
+            :value="cns"
+            @updateValue="cns=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 ">
           <InputField id="id_data" label="Data de Nascimento" :value="birth_date" type="date" @updateValue="birth_date=$event" />
@@ -22,7 +36,14 @@
           <InputField id="id_email" label="Email" type="text" :value="email" @updateValue="email=$event" />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_fone" label="Fone" type="text" :value="telephone" @updateValue="telephone=$event" />
+          <InputField
+            id="id_fone"
+            v-mask="'(##) # ####-####'"
+            label="Fone"
+            type="text"
+            :value="telephone"
+            @updateValue="telephone=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 ">
           <label class="col-form-label">Foto :</label>
@@ -36,7 +57,14 @@
       <h4>Endereço</h4><hr>
       <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cep" label="Cep" type="number" :value="cep" @updateValue="cep=$event" />
+          <InputField
+            id="id_cep"
+            v-mask="'#####-###'"
+            label="Cep"
+            type="text"
+            :value="cep"
+            @updateValue="cep=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
           <InputField id="id_rua" label="Rua" type="text" :value="street" @updateValue="street=$event" />
@@ -149,7 +177,7 @@ export default {
       formData.append('endereco_attributes[UF]', this.uf)
 
       // Finally, sending the POST request with our beloved Axios
-      this.$axios.$put(`/municipes/${this.id}`, formData).then((resp) => {
+      this.$axios.$put(`/municipes/${this.municipeEdit.id}`, formData).then((resp) => {
         if (resp.status === 'SUCCESS') {
           this.$router.push({
             path: '/'
@@ -163,7 +191,7 @@ export default {
 
 <style scoped>
   form {
-    margin-left: 20%;
+    margin-left: 21%;
     background: #B2EBF2;
     padding: 10px;
   }
