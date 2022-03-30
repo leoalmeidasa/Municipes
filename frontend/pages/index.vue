@@ -33,8 +33,8 @@ export default {
       this.$axios
         .$get('/municipes')
         .then(function (response) {
-          if (response.data) {
-            page.$store.commit('loadMunicipes', response.data)
+          if (response) {
+            page.$store.commit('loadMunicipes', response)
           }
         })
         .catch(function (error) {
@@ -63,13 +63,25 @@ export default {
     margin-left: 20%;
     width: 80%;
     height: 100%;
-    background-color:darkcyan;
     color: whitesmoke
   }
   .col {
-    margin-left: 20%;
+    margin-left: 19%;
+    width: 80%;
   }
   .row {
     margin-right: 0%;
+  }
+  .sidebar {
+    width: 18%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  @media (min-width: 768px) {
+    .main {
+    padding-right: 40px;
+    padding-left: 220px; /* 180 + 40 */
+    }
   }
 </style>
