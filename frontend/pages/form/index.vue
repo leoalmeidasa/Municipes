@@ -124,7 +124,7 @@ export default {
 
 <style scoped>
 form {
-    margin-left: 20%;
+    margin-left: 21%;
     background: #B2EBF2;
     padding: 10px;
   }
