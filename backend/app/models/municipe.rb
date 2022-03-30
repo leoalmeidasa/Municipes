@@ -3,7 +3,7 @@ class Municipe < ApplicationRecord
   has_one :endereco
   accepts_nested_attributes_for :endereco
 
-  validates :name, :birth_date, :telephone, presence: true
+  validates :description, :birth_date, :telephone, presence: true
   validates :cpf, presence: true, length: { minimum: 11, maximum: 11 }, uniqueness: true
   validates :cns, presence: true, length: { minimum: 15, maximum: 15 }, uniqueness: true
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
@@ -23,7 +23,7 @@ class Municipe < ApplicationRecord
   private
 
   def validate_birth_date
-    if birth_date.present? && birth_date > 18.years.ago
+    if birth_date.present? && birth_date >= Date.current
       errors.add(:birth_date, 'inválida, favor preencha com uma data válida !')
     end
   end
