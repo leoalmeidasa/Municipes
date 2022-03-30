@@ -1,7 +1,7 @@
 <template>
-  <div class="table-responsive-lg">
+  <div class="table-responsive text-nowrap">
     <table
-      class="table table-dark table-scoped table-hover"
+      class="table table-striped table-hover table-bordered table-advance"
       height="250"
       fixed-header
     >
@@ -13,7 +13,6 @@
             <th>Cpf</th>
             <th>Cns</th>
             <th>Email</th>
-            <th>Data de Nascimento</th>
             <th>Telefone</th>
             <th>Status</th>
             <th>Ações</th>
@@ -23,11 +22,12 @@
           <tr v-for="(municipe, index) in municipesList" :key="index">
             <img :src="municipe.photo.url">
             <td>{{ municipe.description }}</td>
-            <td>{{ municipe.cpf }}</td>
-            <td>{{ municipe.cns }}</td>
+            <td>
+              {{ municipe.cpf | VMask('###.###.###-##') }}
+            </td>
+            <td>{{ municipe.cns | VMask('### #### #### ####') }}</td>
             <td>{{ municipe.email }}</td>
-            <td>{{ municipe.birth_date }}</td>
-            <td>{{ municipe.telephone }}</td>
+            <td>{{ municipe.telephone | VMask('(##) # ####-####') }}</td>
             <td>{{ municipe.status ? 'Ativo' : 'Inativo' }}</td>
             <td>
               <button type="button" class="btn btn-primary btn-sm" @click="funcEdition(index)">
@@ -72,5 +72,23 @@ export default {
   img {
     width: 100px;
     height: 100px;
+  }
+  .table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+  }
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  .table-bordered {
+    border: 1px solid #423636;
+  }
+  tr {
+    text-align: center;
   }
 </style>
