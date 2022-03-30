@@ -3,6 +3,7 @@
     <label :for="id" class="form-label">{{ label }}</label>
     <input
       :id="id"
+      :v-mask="mask"
       :type="type"
       :value="value"
       :checked="checked"
@@ -35,6 +36,10 @@ export default {
     checked: {
       type: Boolean,
       default: false
+    },
+    mask: {
+      type: String,
+      default: ''
     }
   },
   computed: {
