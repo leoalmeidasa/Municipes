@@ -6,8 +6,8 @@ module Api
       before_action :set_municipe, only: %i[edit update]
 
       def index
-        @municipes = Municipe.order('created_at DESC')
-        render json: { status: 'SUCCESS', message: 'Loaded posts', data: @municipes }, status: :ok
+        @municipes = Municipe.all
+        render json: @municipes, status: :ok
       end
 
       def new
