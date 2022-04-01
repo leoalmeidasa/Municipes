@@ -1,7 +1,7 @@
 <template>
   <div class="table-responsive text-nowrap">
     <table
-      class="table table-striped table-hover table-bordered table-advance"
+      class="table table-light table-striped table-hover table-bordered table-advance"
       height="250"
       fixed-header
     >
@@ -10,17 +10,17 @@
           <tr>
             <th>Foto</th>
             <th>Nome</th>
-            <th>Cpf</th>
-            <th>Cns</th>
+            <th>CPF</th>
+            <th>CNS</th>
             <th>Email</th>
             <th>Telefone</th>
             <th>Status</th>
-            <th>Ações</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(municipe, index) in municipesList" :key="index">
-            <img :src="municipe.photo.url">
+            <td><img :src="municipe.photo.url"></td>
             <td>{{ municipe.description }}</td>
             <td>
               {{ municipe.cpf | VMask('###.###.###-##') }}
@@ -30,7 +30,7 @@
             <td>{{ municipe.telephone | VMask('(##) # ####-####') }}</td>
             <td>{{ municipe.status ? 'Ativo' : 'Inativo' }}</td>
             <td>
-              <button type="button" class="btn btn-primary btn-sm" @click="funcEdition(index)">
+              <button type="button" class="btn btn-warning btn-sm" @click="funcEdition(index)">
                 Editar
               </button>
             </td>
@@ -70,25 +70,33 @@ export default {
 </script>
 <style scoped>
   img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
   .table-responsive {
     min-height: .01%;
     overflow-x: auto;
+    margin-left: 19%;
+    margin-right: 1%;
+    width: 80%
   }
   .table {
-    width: 100%;
-    max-width: 100%;
     margin-bottom: 20px;
-    background-color: white;
     border-spacing: 0;
     border-collapse: collapse;
   }
-  .table-bordered {
-    border: 1px solid #423636;
-  }
   tr {
     text-align: center;
+    border-left: 1px solid #ccc;
+  }
+  .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  th {
+    border-left: 1px solid #ccc;
+    text-align: center;
+    padding: 8px;
+    color: #616161;
   }
 </style>
