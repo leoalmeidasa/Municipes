@@ -1,23 +1,25 @@
 <template>
   <main>
     <div class="flex-container">
-      <div class="row">
-        <div class="col">
-          <table-simple :func-edition="editMunicipes" :municipes-list="municipes" />
-          <NuxtLink to="/form" class="btn btn-outline btn-success">
-            Novo Munícipe
-          </NuxtLink>
-        </div>
-      </div>
+      <filter-municipe :search-func="search" />
+      <table-simple :func-edition="editMunicipes" :municipes-list="municipes" />
+      <pagination :paginate-func="paginate" />
+      <NuxtLink id="btnNew" to="/form" class="btn btn-outline btn-success">
+        Novo Munícipe
+      </NuxtLink>
     </div>
   </main>
 </template>
 
 <script>
+import FilterMunicipe from '~/components/FilterMunicipe.vue'
+import Pagination from '~/components/pagination.vue'
 import TableSimple from '~/components/TableSimple.vue'
 
 export default {
-  components: { TableSimple },
+  // eslint-disable-next-line vue/component-definition-name-casing
+  name: 'index',
+  components: { TableSimple, FilterMunicipe, Pagination },
   layout: 'default',
   computed: {
     municipes () {
@@ -28,10 +30,26 @@ export default {
     this.listMunicipes()
   },
   methods: {
-    listMunicipes () {
+    listMunicipes (query) {
       const page = this
       this.$axios
-        .$get('/municipes')
+        // .$get(`/municipes/${query !== '' ? '?q=' + query : ''}`)
+        .$get(`/municipes/${query !== '' && query !== undefined ? '?q[description_cont]=' + query + '&commit=Search' : ''}`)
+        .then(function (response) {
+          if (response) {
+            page.$store.commit('loadMunicipes', response)
+          }
+        })
+        .catch(function (error) {
+          // eslint-disable-next-line no-console
+          console.error(error)
+        })
+    },
+    PageMunicipes (pagination) {
+      const page = this
+      this.$axios
+        // .$get(`/municipes/${query !== '' ? '?q=' + query : ''}`)
+        .$get(`/municipes/${pagination !== '' && pagination !== undefined ? '?page=' + pagination : ''}`)
         .then(function (response) {
           if (response) {
             page.$store.commit('loadMunicipes', response)
@@ -45,6 +63,12 @@ export default {
     editMunicipes (id) {
       this.$store.commit('loadMunicipeEdit', this.municipes[id])
       this.$router.push({ name: 'edit' })
+    },
+    search (value) {
+      this.listMunicipes(value)
+    },
+    paginate (pagination) {
+      this.PageMunicipes(pagination)
     }
   }
 }
@@ -58,30 +82,10 @@ export default {
      z-index: 1;
      padding: none;
   }
-  #card-table {
-    padding: none;
-    margin-left: 20%;
-    width: 80%;
-    height: 100%;
-    color: whitesmoke
-  }
-  .col {
+  #btnNew {
     margin-left: 19%;
-    width: 80%;
-  }
-  .row {
-    margin-right: 0%;
   }
   .sidebar {
     width: 18%;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  @media (min-width: 768px) {
-    .main {
-    padding-right: 40px;
-    padding-left: 220px; /* 180 + 40 */
-    }
   }
 </style>
