@@ -12,8 +12,8 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
           <InputField
             id="id_cpf"
-            v-mask="'###.###.###-##'"
-            label="Cpf"
+            mask="###.###.###-##"
+            label="CPF"
             type="text"
             :value="cpf"
             @updateValue="cpf=$event"
@@ -22,8 +22,8 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
           <InputField
             id="id_cns"
-            v-mask="'### #### #### ####'"
-            label="Cns"
+            mask="### #### #### ####"
+            label="CNS"
             type="text"
             :value="cns"
             @updateValue="cns=$event"
@@ -38,7 +38,7 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
           <InputField
             id="id_fone"
-            v-mask="'(##) # ####-####'"
+            mask="(##) # ####-####"
             label="Fone"
             type="text"
             :value="telephone"
@@ -50,7 +50,7 @@
           <input type="file" @change="setImage">
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_status" label="Status" type="checkbox" :checked="status" @updateValue="status=$event.checked" />
+          <InputField id="id_status" label="Status" type="checkbox" :checked="status" @updateValue="status=$event" />
         </div>
       </div>
 
@@ -59,7 +59,7 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
           <InputField
             id="id_cep"
-            v-mask="'#####-###'"
+            mask="#####-###"
             label="Cep"
             type="text"
             :value="cep"
@@ -86,7 +86,7 @@
         </div>
       </div>
       <button type="button" class="btn btn-outline-primary" @click="createItem">
-        Editar
+        Atualizar
       </button>
     </form>
   </div>
@@ -96,7 +96,8 @@
 import InputField from '~/components/Form/InputField.vue'
 
 export default {
-  name: 'MunicipeForm',
+  // eslint-disable-next-line vue/component-definition-name-casing
+  name: 'edit',
   components: { InputField },
   layout: 'default',
   data () {
@@ -137,7 +138,6 @@ export default {
     // Collecting everything inside our FormData object
     loadData () {
       if (this.municipeEdit) {
-        this.id = this.municipeEdit.id
         this.description = this.municipeEdit.description
         this.cpf = this.municipeEdit.cpf
         this.cns = this.municipeEdit.cns
@@ -160,11 +160,11 @@ export default {
     createItem () {
       const formData = new FormData()
       formData.append('description', this.description)
-      formData.append('cpf', this.cpf)
-      formData.append('cns', this.cns)
+      formData.append('cpf', this.cpf.replace(/\D/g, ''))
+      formData.append('cns', this.cns.replace(/\D/g, ''))
       formData.append('email', this.email)
       formData.append('birth_date', this.birth_date)
-      formData.append('telephone', this.telephone)
+      formData.append('telephone', this.telephone.replace(/\D/g, ''))
       formData.append('status', this.status)
       formData.append('photo', this.photo)
       formData.append('endereco_attributes[id]', this.id_endereco)
@@ -173,15 +173,13 @@ export default {
       formData.append('endereco_attributes[IBGE_code]', this.ibge_code)
       formData.append('endereco_attributes[district]', this.district)
       formData.append('endereco_attributes[city]', this.city)
-      formData.append('endereco_attributes[CEP]', this.cep)
+      formData.append('endereco_attributes[CEP]', this.cep.replace(/\D/g, ''))
       formData.append('endereco_attributes[UF]', this.uf)
 
       // Finally, sending the POST request with our beloved Axios
       this.$axios.$put(`/municipes/${this.municipeEdit.id}`, formData).then((resp) => {
         if (resp.status === 'SUCCESS') {
-          this.$router.push({
-            path: '/'
-          })
+          this.$router.back()
         }
       })
     }
@@ -191,7 +189,8 @@ export default {
 
 <style scoped>
   form {
-    margin-left: 21%;
+    margin-left: 19%;
+    margin-right: 1%;
     background: #B2EBF2;
     padding: 10px;
   }
