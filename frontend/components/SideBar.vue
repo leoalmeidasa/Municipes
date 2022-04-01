@@ -1,73 +1,100 @@
 <template>
   <div class="sidebar">
-    <nav id="sidebar" class="sidebar-wrapper">
-      <div class="profile">
-        <img src="https://media-exp1.licdn.com/dms/image/C4E03AQFoh6LPspzsow/profile-displayphoto-shrink_800_800/0/1573563047233?e=1654128000&v=beta&t=Y-wA4BT0x-uwuqU6uXWfktElifQjVkLSQCR2C_VB79s" alt="profile_picture">
-        <h3>Leonardo Almeida</h3>
-        <p>Developer</p>
-      </div>
+    <nav class="main-menu">
+      <h3>Munícipes</h3>
       <ul>
         <li>
-          <router-link tag="li" to="/" class="nav-item has-treeview">
-            <a id="dashboard_tab" href="#" class="nav-link">
-              <span>Dashboard</span>
-            </a>
-          </router-link>
-        </li>
-        <li>
-          <router-link tag="li" to="/form" class="nav-item has-treeview">
-            <a id="dashboard_tab" href="#" class="nav-link">
-              <span>Novo Munícipe</span>
-            </a>
-          </router-link>
+          <NuxtLink to="/">
+            <i class="fa fa-home fa-2x" />
+            <span class="link">DashBoard</span>
+          </NuxtLink>
         </li>
       </ul>
     </nav>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    navigateSidebar (route) {
+      this.$router.push({ name: route })
+    }
+  }
+}
+</script>
 <style scoped>
-  .sidebar {
-    position: fixed;
-    width:18%;
-    height: 100%;
-    background:#424242;
-    color:white;
-    max-height: 100%;
-    position: fixed;
-    top: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+  @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+  @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+  h3 {
+    font-weight:bold;
+    font-size:1.6em;
+    font-style:normal;
+    margin: 2em 0 2em 0.81em;
+    color:rgb(255,255,255);
+    border-bottom: 4px solid rgb(155,155,155);
   }
-  .sidebar li {
-    list-style-type: none;
-    text-decoration-line: none;
-    position:relative;
-    display: block;
-  }
-  .sidebar li a {
+  .fa-2x {
+    font-size: 2em;
     margin-top: 10%;
-    color:aliceblue;
   }
-  .sidebar .profile{
-    margin-bottom: 30px;
+  .fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
     text-align: center;
+    vertical-align: middle;
+    font-size:20px;
   }
 
-  .sidebar .profile img{
-    display: block;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 0 auto;
+  .main-menu {
+    position: fixed;
+    width: 18%;
+    height: 100%;
+    background:#212121;
+    color:white;
+    top:60px;
+    bottom:0;
+    border-right:1px solid #660924;
   }
 
-  .sidebar .profile h3{
-    color: #ffffff;
-    margin: 10px 0 5px;
+  .main-menu>ul {
+    margin:7px 0;
   }
 
-  .sidebar .profile p{
-    color: rgb(206, 240, 253);
+  .main-menu li {
+    position:relative;
+    display:block;
+    width:100%;
+  }
+
+  .main-menu li>a {
+    position:relative;
+    border-spacing:0;
+    color:white;
     font-size: 14px;
+    text-decoration:none;
+  }
+
+  .main-menu .nav-icon {
+    position:relative;
+    width:60px;
+    height:36px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:18px;
+  }
+
+  .link {
+    position:relative;
+    display:table-cell;
+    vertical-align:middle;
+    width:190px;
+  }
+  @font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
   }
 </style>
