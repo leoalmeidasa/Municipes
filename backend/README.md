@@ -1,24 +1,27 @@
-# README
+# Projeto Desafio da Empresa OM30
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requisitos
 
-Things you may want to cover:
+● Disponivel no Link: https://github.com/OM30/desafio-OM30/blob/master/DesafioBackendRuby.md
 
-* Ruby version
+## Dependências
 
-* System dependencies
+- Ruby 3.0.3
+- Rails 6.1.4
+- Sqlite
 
-* Configuration
+## API no Heroku
+● link: https://citizencontrol.herokuapp.com/citizens
 
-* Database creation
+## Documentação da API
 
-* Database initialization
+● link: https://www.postman.com/devtechbrazil/workspace/devtech-brazil/overview
 
-* How to run the test suite
+## Setup
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. `git clone https://github.com/leoalmeidasa/Municipes`
+2. `cd Municipes`
+3. `rails db:create db:migrate`
+4. `rspec spec/` (para verificar se todos os testes estão ok)
+5. `rails s`
+6. Abrir o link localhost:3000
