@@ -10,13 +10,6 @@
 - Rails 6.1.4
 - Sqlite
 
-## API no Heroku
-● link: https://citizencontrol.herokuapp.com/citizens
-
-## Documentação da API
-
-● link: https://www.postman.com/devtechbrazil/workspace/devtech-brazil/overview
-
 ## Setup
 
 1. `git clone https://github.com/leoalmeidasa/Municipes`
