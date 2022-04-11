@@ -1,7 +1,17 @@
 <template>
   <div class="mb-2">
-    <label :for="id" class="form-label">{{ label }}</label>
-    <input :id="id" :type="type" :value="value" class="form-control" v-on="listeners">
+    <label v-if="label" :for="id" class="form-label">{{ label }}</label>
+    <input
+      :id="id"
+      v-mask="mask"
+      :type="type"
+      :value="value"
+      :checked="checked"
+      :required="required"
+      :placeholder="placeholder"
+      class="form-control"
+      v-on="listeners"
+    >
   </div>
 </template>
 
@@ -24,6 +34,21 @@ export default {
     // eslint-disable-next-line vue/require-default-prop
     value: {
       type: String
+    },
+    checked: {
+      type: Boolean,
+      default: false
+    },
+    mask: {
+      type: String,
+      default: ''
+    },
+    required: {
+      type: Boolean
+    },
+    // eslint-disable-next-line vue/require-default-prop
+    placeholder: {
+      type: String
     }
   },
   computed: {
@@ -35,7 +60,7 @@ export default {
   },
   methods: {
     updateValue (event) {
-      const value = event.target.value
+      const value = this.type === 'checkbox' ? event.target.checked : event.target.value
       this.$emit('updateValue', value)
     }
   }

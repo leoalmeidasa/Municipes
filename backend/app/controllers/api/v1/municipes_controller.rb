@@ -7,7 +7,7 @@ module Api
 
       def index
         @municipes = Municipe.order('created_at DESC')
-        render json: { status: 'SUCCESS', message: 'Loaded posts', data: @municipes }, status: :ok
+        render json: @municipes, status: :ok
       end
 
       def new
@@ -43,7 +43,7 @@ module Api
       end
 
       def municipe_params
-        params.permit(:description, :cpf, :cns, :email, :birth_date, :telephone, :status, :photo,
+        params.permit(:id, :description, :cpf, :cns, :email, :birth_date, :telephone, :status, :photo,
                                          endereco_attributes: %i[id CEP street complement district city UF IBGE_code])
       end
     end

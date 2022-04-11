@@ -4,57 +4,140 @@
       <h4>Dados Pessoais</h4><hr>
       <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_nome" label="Nome" type="text" @updateValue="description=$event" />
+          <InputField
+            id="id_nome"
+            label="Nome"
+            required
+            type="text"
+            @updateValue="description=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cpf" label="Cpf" type="text" @updateValue="cpf=$event" />
+          <InputField
+            id="id_cpf"
+            label="CPF"
+            required
+            type="text"
+            @updateValue="cpf=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cns" label="Cns" type="text" @updateValue="cns=$event" />
+          <InputField
+            id="id_cns"
+            label="CNS"
+            required
+            type="text"
+            @updateValue="cns=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 ">
-          <InputField id="id_data" label="Data de Nascimento" type="date" @updateValue="birth_date=$event" />
+          <InputField
+            id="id_data"
+            label="Data de Nascimento"
+            required
+            type="date"
+            @updateValue="birth_date=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_email" label="Email" type="text" @updateValue="email=$event" />
+          <InputField
+            id="id_email"
+            label="Email"
+            required
+            type="text"
+            @updateValue="email=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_fone" label="Fone" type="text" @updateValue="telephone=$event" />
+          <InputField
+            id="id_fone"
+            label="Fone"
+            required
+            type="text"
+            @updateValue="telephone=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 ">
           <label class="col-form-label">Foto :</label>
           <input type="file" @change="setImage">
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_status" label="Status" type="checkbox" @updateValue="status=$event" />
+          <InputField
+            id="id_status"
+            label="Status"
+            required
+            :checked="status"
+            type="checkbox"
+            @updateValue="status=$event"
+          />
         </div>
       </div>
 
       <h4>Endereço</h4><hr>
       <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cep" label="Cep" type="number" @updateValue="cep=$event" />
+          <InputField
+            id="id_cep"
+            label="CEP"
+            required
+            type="number"
+            @updateValue="cep=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_rua" label="Rua" type="text" @updateValue="street=$event" />
+          <InputField
+            id="id_rua"
+            label="Rua"
+            required
+            type="text"
+            @updateValue="street=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 ">
-          <InputField id="id_complemento" label="Complemento" type="text" @updateValue="complement=$event" />
+          <InputField
+            id="id_complemento"
+            label="Complemento"
+            type="text"
+            @updateValue="complement=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_bairro" label="Bairro" type="text" @updateValue="district=$event" />
+          <InputField
+            id="id_bairro"
+            label="Bairro"
+            required
+            type="text"
+            @updateValue="district=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_cidade" label="Cidade" type="text" @updateValue="city=$event" />
+          <InputField
+            id="id_cidade"
+            label="Cidade"
+            required
+            type="text"
+            @updateValue="city=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_estado" label="Estado" type="text" @updateValue="uf=$event" />
+          <InputField
+            id="id_estado"
+            label="Estado"
+            required
+            type="text"
+            @updateValue="uf=$event"
+          />
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
-          <InputField id="id_ibge" label="Codigo IBGE" type="number" @updateValue="ibge_code=$event" />
+          <InputField
+            id="id_ibge"
+            label="Codigo IBGE"
+            type="number"
+            @updateValue="ibge_code=$event"
+          />
         </div>
       </div>
-      <button class="btn btn-outline-primary" @click="createItem">
+      <button type="button" class="btn btn-outline-success" @click="createItem">
         Cadastrar
       </button>
     </form>
@@ -64,7 +147,8 @@
 <script>
 import InputField from '~/components/Form/InputField.vue'
 export default {
-  name: 'MunicipeForm',
+  // eslint-disable-next-line vue/component-definition-name-casing
+  name: 'form',
   components: { InputField },
   layout: 'default',
   data () {
@@ -84,7 +168,6 @@ export default {
       city: '',
       cep: '',
       uf: ''
-
     }
   },
   methods: {
@@ -111,7 +194,11 @@ export default {
       formData.append('endereco_attributes[UF]', this.uf)
 
       // Finally, sending the POST request with our beloved Axios
-      this.$axios.$post('/municipes', formData)
+      this.$axios.$post('/municipes', formData).then((resp) => {
+        if (resp.status === 'SUCCESS') {
+          this.$router.back()
+        }
+      })
     }
   }
 }
@@ -119,8 +206,13 @@ export default {
 
 <style scoped>
 form {
-    margin-left: 20%;
+    margin-left: 19%;
+    margin-right: 1%;
     background: #B2EBF2;
     padding: 10px;
+    margin-top: 60px;
+  }
+  btn {
+    margin-left: 0%;
   }
 </style>

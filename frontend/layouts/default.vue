@@ -1,8 +1,7 @@
 <template>
   <div>
-    <side-bar />
     <top-page />
-    <header-card />
+    <side-bar />
     <Nuxt />
   </div>
 </template>
@@ -12,7 +11,8 @@
 
 <style>
 body {
-    background-color:darkcyan;
-    color: black;
+  background:  #e6e6e6;
+  color: black;
+  font-family: Roboto,sans-serif;
   }
 </style>
